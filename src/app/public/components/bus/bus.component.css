@@ -1,0 +1,38 @@
+.bus {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+
+.datos {
+  padding: 10px;
+  margin: 3px;
+  height: 100%;
+  width: 100%;
+  border-left: 2px solid #023;
+  border-right: 2px solid #023;
+  background-color: #333333;
+  color: white;
+}
+
+.control {
+  padding: 10px;
+  margin: 3px;
+  height: 100%;
+  width: 100%;
+  border-left: 2px solid #023;
+  border-right: 2px solid #023;
+  background-color: #1565c0;
+  color: white;
+}
+
+.direcciones {
+  padding: 10px;
+  margin: 3px;
+  height: 100%;
+  width: 100%;
+  border-left: 2px solid #023;
+  border-right: 2px solid #023;
+  background-color: #8bc34a;
+  color: white;
+}

@@ -1,0 +1,17 @@
+.memoria{
+  height: 100%;
+  width: 100%;
+}
+
+.instrucciones {
+  height: 50%;
+  width: 100%;
+  border: 1px solid #023;
+  border-bottom: none;
+}
+
+.datos {
+  height: 50%;
+  width: 100%;
+  border: 1px solid #023;
+}

@@ -1,0 +1,14 @@
+.uc {
+  background-color: #2ecc71;
+  height: 50px;
+  width: 50px;
+  font-weight: 600;
+  border-radius: 10%;
+  display: flex;
+}
+
+p {
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
