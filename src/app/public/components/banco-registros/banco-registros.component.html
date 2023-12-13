@@ -1,1 +1,13 @@
-<p>banco-registros works!</p>
+<div class="br" id="br">
+  <p class="titulo">Banco Registros</p>
+  <table>
+    <tr>
+      <th>Índice</th>
+      <th>Valor</th>
+    </tr>
+    <tr *ngFor="let registro of registros; let i = index">
+      <td>{{ registrosNombres[i] }}</td>
+      <td>{{ registro }}</td>
+    </tr>
+  </table>
+</div>

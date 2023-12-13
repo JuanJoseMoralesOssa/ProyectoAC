@@ -1,3 +1,14 @@
-<div>
-  <h4>Memoria Instrucciones</h4>
+<div class="main-instrucciones instrucciones" id="memoria-instrucciones">
+  <p class="titulo">Memoria Instrucciones</p>
+  <table>
+    <tr>
+      <th>Índice</th>
+      <th>Valor</th>
+    </tr>
+    <tr *ngFor="let dato of arrayInstrucciones; index as i">
+      <td>{{ i }}</td>
+      <td>{{ dato }}</td>
+    </tr>
+  </table>
+
 </div>

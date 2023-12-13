@@ -1,4 +1,13 @@
-<div>
-  <h4>Memoria Datos</h4>
-
+<div class="main-datos datos" id="memoria-datos">
+  <p class="titulo">Memoria de datos</p>
+  <table>
+    <tr>
+      <th>Índice</th>
+      <th>Valor</th>
+    </tr>
+    <tr *ngFor="let dato of datos; index as i" class="datos">
+      <td>{{ i }}</td>
+      <td>{{ dato }}</td>
+    </tr>
+  </table>
 </div>

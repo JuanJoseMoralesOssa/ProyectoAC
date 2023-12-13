@@ -1,0 +1,23 @@
+.mbr {
+  height: fit-content;
+  width: 50px;
+  background-color: #7edca2;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 10%;
+  text-align: center;
+
+}
+
+.titulo {
+  padding-top: 0;
+  margin-top: 0;
+  font-weight: bold;
+  text-align: center;
+}
+
+.resultado {
+  font-size: small;
+}

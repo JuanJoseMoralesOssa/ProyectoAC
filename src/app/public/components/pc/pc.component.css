@@ -1,0 +1,19 @@
+.pc {
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  height: fit-content;
+  width: 50px;
+  background-color: rgb(138, 226, 22);
+  border-radius: 10%;
+  text-align: center;
+
+}
+
+.titulo {
+  padding-top: 0;
+  margin-top: 0;
+  font-weight: bold;
+  text-align: center;
+}

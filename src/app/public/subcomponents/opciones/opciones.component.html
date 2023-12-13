@@ -1,16 +1,17 @@
 <div class="fondo">
-  <div class="fondo">
+  <div>
+    <button class="btn btn-primary" (click)="captarNumeros()">Captar Numeros</button>
+  </div>
+  <div class="operaciones">
     <div>
-      <button class="btn btn-primary" (click)="ejecutar()">Ejecutar</button>
+      <button class="btn btn-primary" (click)="operacionesAritmeticas()">Aritmeticas</button>
     </div>
+    <br>
     <div>
-      <button class="btn btn-primary" (click)="pausar()">Pausar</button>
+      <button class="btn btn-primary" (click)="operacionesLogicas()">Logicas</button>
     </div>
-    <div>
-      <button class="btn btn-primary" (click)="reiniciar()">Reiniciar</button>
-    </div>
-    <div>
-      <button class="btn btn-primary" (click)="cargar()">Cargar</button>
-    </div>
+  </div>
+  <div>
+    <button class="btn btn-primary" (click)="ejecutar()" >Ejecutar</button>
   </div>
 </div>

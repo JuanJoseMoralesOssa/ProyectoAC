@@ -12,3 +12,8 @@ p {
   justify-content: center;
   align-items: center;
 }
+
+.titulo {
+  font-weight: bold;
+  text-align: center;
+}

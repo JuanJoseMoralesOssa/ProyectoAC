@@ -1,33 +1,32 @@
 <main class="main">
-  <div class="container-fluid">
-    <div class="animated fadeIn">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="vista">
-            <div class="cuadro">
-              <div class="cpu">
-                <app-alu></app-alu>
-                <app-uc></app-uc>
-                <app-ir></app-ir>
-                <app-mar></app-mar>
-                <app-mbr></app-mbr>
-                <app-pc></app-pc>
-                <app-banco-registros></app-banco-registros>
-              </div>
-              <div class="bus">
-                <app-bus></app-bus>
-              </div>
-              <div class="memoria">
-                <app-memoria></app-memoria>
-              </div>
-            </div>
-            </div>
-            <div class="opciones">
-              <app-opciones></app-opciones>
-            </div>
+  <div class="vista">
+    <div class="cuadro">
+      <div class="subcuadro">
+        <div class="cpu">
+          <app-uc></app-uc>
+          <app-alu></app-alu>
+          <app-ir></app-ir>
+          <app-mar></app-mar>
+          <app-mbr></app-mbr>
+          <app-pc></app-pc>
+        </div>
+        <div class="bc">
+          <div>
+            <app-banco-registros></app-banco-registros>
           </div>
-        <router-outlet></router-outlet>
+        </div>
+      </div>
+
+      <div class="bus">
+        <app-bus></app-bus>
+      </div>
+      <div class="memoria">
+        <app-memoria></app-memoria>
       </div>
     </div>
   </div>
+  <div class="opciones">
+    <app-opciones></app-opciones>
+  </div>
+  <router-outlet></router-outlet>
 </main>
