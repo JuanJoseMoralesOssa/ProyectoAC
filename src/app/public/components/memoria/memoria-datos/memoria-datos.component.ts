@@ -11,7 +11,6 @@ import { SharedDirectionsService } from '../../../../services/shared-directions.
 })
 export class MemoriaDatosComponent implements OnInit {
   datos: string[] = [];
-  valor = 0;
 
   constructor(private sharedDirectionsService: SharedDirectionsService) {}
 

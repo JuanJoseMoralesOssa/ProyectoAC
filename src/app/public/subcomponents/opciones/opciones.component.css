@@ -34,3 +34,10 @@
   justify-content: center;
   align-items: center;
 }
+
+.operandos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

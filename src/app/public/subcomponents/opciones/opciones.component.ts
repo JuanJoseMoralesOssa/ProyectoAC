@@ -13,8 +13,8 @@ import { Helper } from '../../controller/helper';
   styleUrl: './opciones.component.css',
 })
 export class OpcionesComponent {
-  num1 = 0;
-  num2 = 0;
+  num1: number = 0;
+  num2: number = 0;
 
   constructor(
     private sharedDirectionsService: SharedDirectionsService,
@@ -45,31 +45,34 @@ export class OpcionesComponent {
       return;
     }
 
-    this.num1 = parseInt(op1);
-    this.num2 = parseInt(op2);
+    this.num1 = Number(op1);
+    this.num2 = Number(op2);
 
     console.log('num1: ' + this.num1 + ' num2: ' + this.num2);
     this.agregarDato(this.num1);
     this.agregarDato(this.num2);
   }
 
-  // sumar() {
-  //   this.cambiarDato((this.num1 + this.num2).toString());
-  // }
+  captarStrings() {
+    let op1 = prompt('Ingresa el primer string', '');
+    let op2 = prompt('Ingresa el segundo string', '');
 
-  // restar() {
-  //   this.cambiarDato((this.num1 - this.num2).toString());
-  // }
+    if (op1 == null || op2 == null) {
+      return;
+    }
 
-  // multiplicar() {
-  //   this.cambiarDato((this.num1 * this.num2).toString());
-  // }
+    console.log('num1: ' + this.num1 + ' num2: ' + this.num2);
+    this.agregarDato(op1);
+    this.agregarDato(op2);
+  }
 
   operacionesLogicas() {
     let op = prompt(
       `
-      Comparar: 1
-      Negar: 2
+      CMP: 1
+      AND: 2
+      OR: 3
+      NCMP: 4
     `,
       ''
     );
@@ -87,7 +90,13 @@ export class OpcionesComponent {
         instruccion = 'CMP';
         break;
       case '2':
-        instruccion = 'NOT';
+        instruccion = 'AND';
+        break;
+      case '3':
+        instruccion = 'OR';
+        break;
+      case '4':
+        instruccion = 'NCMP';
         break;
       default:
         instruccion = 'NOP';
@@ -112,7 +121,6 @@ export class OpcionesComponent {
     }
     instruccion += ',' + dirRes;
 
-
     this.agregarInstruccion(instruccion);
   }
 
@@ -123,6 +131,7 @@ export class OpcionesComponent {
       Restar: 2
       Multiplicar: 3
       Dividir: 4
+      Modulo: 5
     `,
       ''
     );
@@ -148,6 +157,9 @@ export class OpcionesComponent {
         break;
       case '4':
         instruccion = 'DIV';
+        break;
+      case '5':
+        instruccion = 'MOD';
         break;
       default:
         instruccion = 'NOP';
@@ -180,5 +192,6 @@ export class OpcionesComponent {
       this.sharedDirectionsService,
       this.sharedValuesService
     );
+    exec.execute();
   }
 }

@@ -19,6 +19,7 @@ export class ALU {
 
   async realizarOperacion(codop: string) {
     let res = 0;
+
     switch (codop) {
       case 'ADD':
         res = Number(this.op1) + Number(this.op2);

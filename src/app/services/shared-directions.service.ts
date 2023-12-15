@@ -27,12 +27,19 @@ export class SharedDirectionsService {
 
   pushDataRegistros(value: string) {
     if (this.dataRegistros.value.length == 4) {
+      if (this.sobreEscribir == 3) {
+        this.sobreEscribir = 0;
+      }
       this.dataRegistros.value[this.sobreEscribir] = value;
       this.sobreEscribir += 1;
     } else {
       this.dataRegistros.value.push(value);
     }
     this.dataRegistros.next(this.dataRegistros.value);
+  }
+
+  getDataInstrccionesLen() {
+    return this.dataInstrucciones.value.length;
   }
 
   getInstruccion(valor: number) {

@@ -9,4 +9,17 @@
   background-color: #fdfd96;
   padding: 2%;
   border-radius: 5%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+table td {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+  border-collapse: collapse;
+  font-size: 12px;
+  text-align: center;
 }

@@ -22,24 +22,10 @@ export class Exec {
   valorPC = '';
   res = '';
 
-  codops = [
-    'ADD',
-    'SUB',
-    'MUL',
-    'DIV',
-    'MOD',
-    'CMP',
-    'AND',
-    'OR',
-    'NOT',
-    'MOV',
-  ];
-
   constructor(
     private sharedDirectionsService: SharedDirectionsService,
     private sharedValuesService: SharedValuesService
   ) {
-    this.execute();
     this.sharedValuesService
       .getValorMAR()
       .subscribe((value) => (this.valorMAR = value));
@@ -55,9 +41,10 @@ export class Exec {
     this.sharedValuesService
       .getValorRes()
       .subscribe((value) => (this.res = value));
+    this.sharedValuesService.setValorPC('0');
   }
 
-  private async execute() {
+  async execute() {
     console.log('Ejecutando');
     await this.fetchI();
     await this.decoInst();
@@ -67,7 +54,7 @@ export class Exec {
 
   private async fetchI() {
     let color = '#ffd100';
-    this.sharedValuesService.setValorPC('0');
+    this.sharedValuesService.setValorPC(this.valorPC);
     await this.uc.empezarSenal(this.elementoUC!, color);
     await this.leerEscribirPCMAR();
     await this.leerUCMemoriaInstr();
@@ -79,7 +66,7 @@ export class Exec {
   async leerEscribirPCMAR() {
     let color = 'red';
     await this.uc.empezarSenal(this.elementoPC!, color).then(async () => {
-      this.sharedValuesService.setValorMAR('0');
+      this.sharedValuesService.setValorMAR(this.valorPC);
       this.uc.empezarSenal(this.elementoPC!, color);
       this.uc.empezarSenal(this.elementoMAR!, color);
       await this.uc.sleep(2000);
@@ -140,9 +127,7 @@ export class Exec {
 
   private async decoInst() {
     await this.moveInstIRUC();
-    return await new Promise((resolve) => {
-      resolve(true);
-    });
+    return await Promise.resolve();
   }
 
   async moveInstIRUC() {
@@ -158,10 +143,7 @@ export class Exec {
 
   async identificarInstUC() {
     let array = Helper.splitString(this.valorIR);
-    for (let index = 0; index < array.length; index++) {
-      const element = array[index];
-    }
-    if (array.length < 0) {
+    if (array.length == 0) {
       return;
     }
     let codop = array[0];
@@ -169,25 +151,30 @@ export class Exec {
     let dirOp2 = array[2];
     let dirRes = array[3];
 
-    if ('MOV' != codop) {
-      await this.moveInstr();
-    }
+    // if ('MOV' != codop) {
+    //   await this.moveInstr();
+    // }
 
-    await this.calcularDirOp(dirOp1, dirOp2, dirRes);
+    await this.calcularDirOp(dirOp1, dirOp2);
     await this.moverBRALU(dirOp1, dirOp2);
     await this.execUCALU(codop);
     await this.moverUCMAR(dirRes);
-
-    this.modificarMBR(this.res);
+    await this.modificarALU_MBR();
     await this.escribirUCMemoDatos();
     await this.escribirMARMemoDatos();
     await this.escribirMBRMemoDatos(dirRes, this.res);
     await this.calculNextInstr();
+    if (
+      Number(this.valorPC) !=
+      this.sharedDirectionsService.getDataInstrccionesLen()
+    ) {
+      this.execute();
+    }
   }
 
-  async moveInstr() {}
+  // async moveInstr() {}
 
-  async calcularDirOp(dirOp1: string, dirOp2: string, dirRes: string) {
+  async calcularDirOp(dirOp1: string, dirOp2: string) {
     await this.moverOpBC(dirOp1);
     await this.moverOpBC(dirOp2);
   }
@@ -259,7 +246,7 @@ export class Exec {
   async moverBRALU(dirOp1: string, dirOp2: string) {
     let color = 'red';
     await this.uc.empezarSenal(this.elementoBR!, color).then(async () => {
-      this.uc.empezarSenal(this.elementoALU!, color);
+      this.uc.empezarSenal(this.elementoBR!, color);
       this.uc.empezarSenal(this.elementoALU!, color);
       let i1 = parseInt(dirOp1);
       let i2 = parseInt(dirOp2);
@@ -274,9 +261,19 @@ export class Exec {
   async execUCALU(codop: string) {
     let color = 'red';
     await this.uc.empezarSenal(this.elementoUC!, color).then(async () => {
-      this.uc.empezarSenal(this.elementoALU!, color);
+      this.uc.empezarSenal(this.elementoUC!, color);
       this.uc.empezarSenal(this.elementoALU!, color);
       this.alu.realizarOperacion(codop);
+      await this.uc.sleep(2000);
+    });
+  }
+
+  async modificarALU_MBR() {
+    let color = 'red';
+    await this.uc.empezarSenal(this.elementoALU!, color).then(async () => {
+      this.uc.empezarSenal(this.elementoALU!, color);
+      this.uc.empezarSenal(this.elementoMBR!, color);
+      this.modificarMBR(this.res);
       await this.uc.sleep(2000);
     });
   }
